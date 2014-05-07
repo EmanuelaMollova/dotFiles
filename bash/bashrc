@@ -1,0 +1,14 @@
+source ~/.bash/aliases
+
+PS1='\[\033[01;35m\]\u\[\033[01;34m\]@\[\033[01;35m\]\h \[\033[01;34m\]\w \[\033[01;35m\]\$ '
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+export PYENV_ROOT="${HOME}/.pyenv"
+
+if [ -d "${PYENV_ROOT}" ]; then
+  export PATH="${PYENV_ROOT}/bin:${PATH}"
+  eval "$(pyenv init -)"
+fi

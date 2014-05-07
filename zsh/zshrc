@@ -1,0 +1,13 @@
+source ~/.bash/aliases
+
+export ZSH=$HOME/.oh-my-zsh
+
+ZSH_THEME="agnoster_"
+
+plugins=(bundler composer git python rand-quote symfony2 tmux vi-mode)
+
+source $ZSH/oh-my-zsh.sh
+
+export PATH="/home/emanuela/.rvm/gems/ruby-2.1.0/bin:/home/emanuela/.rvm/gems/ruby-2.1.0@global/bin:/home/emanuela/.rvm/rubies/ruby-2.1.0/bin:/home/emanuela/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/emanuela/.rvm/bin"
+
+setopt AUTO_CD

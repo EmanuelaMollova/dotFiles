@@ -1,0 +1,183 @@
+" Vundle ------------------------------------------------------------------ {{{
+set nocompatible " be iMproved
+filetype off
+
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Let Vundle manage Vundle
+Plugin 'gmarik/Vundle.vim'
+
+" SnipMate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/syntastic'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-repeat.git'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'godlygeek/tabular'
+Plugin 'ervandew/supertab'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'AndrewRadev/splitjoin.vim'
+
+call vundle#end()
+filetype plugin indent on
+" }}}
+
+" Basic settings ---------------------------------------------------------- {{{
+syntax on
+
+set encoding=utf8
+
+if has('gui_running')
+    set background=light
+    colorscheme solarized
+else
+    set t_Co=256
+    colorscheme desert
+endif
+
+" Show line numbers
+set number
+
+" Better command-line completion
+set wildmenu
+
+" Use case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
+
+" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
+" mapping of <C-L> below)
+set hlsearch
+set incsearch
+
+" Turn backup off
+set nobackup
+set nowb
+set noswapfile
+
+" Highlight the 80th column
+set colorcolumn=80
+
+" Don't wrap long lines
+set nowrap
+
+" Show horizontal scrollbar
+set guioptions+=b
+
+" Remove menu bar
+set guioptions-=m
+
+" Remove toolbar
+set guioptions-=T
+
+set showmatch
+
+set backspace=indent,eol,start
+
+set shiftround
+" }}}
+
+" Tabs, spaces and identation --------------------------------------------  {{{
+set smartindent
+set autoindent
+
+filetype indent on
+
+" Use spaces instead of tabs
+set expandtab
+set smarttab
+
+set shiftwidth=4
+set tabstop=4
+
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+" }}}
+
+" Disable some keys -------------------------------------------------------- {{{
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+" }}}
+
+" Mappings ---------------------------------------------------------------- {{{
+" Set the mapleader
+let mapleader = "-"
+let maplocalleader = "_"
+
+nnoremap <Leader>p "+p
+vnoremap <Leader>y "+y
+
+set pastetoggle=<F9>
+
+nnoremap 9 $
+vnoremap 9 $h
+
+" Make Surround works with s
+vmap s S
+
+" Map F2 to toggle NERDTree
+nmap <silent> <F2> :NERDTreeToggle<CR>
+
+" Map F3 to toggle Tagbar
+nmap <silent> <F3> :TagbarToggle<CR>
+
+nmap :W :w<CR>
+nmap :в :w<CR>
+nmap :В :w<CR>
+
+" Map <C-l> to remove highlighting when searching
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+" Split a line
+map <Leader>j i<CR><Esc>
+
+" Edit my vimrc file
+nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
+
+" Source my vimrc file
+nnoremap <Leader>sv :source $MYVIMRC<cr>
+
+" Press jk instead Esc in insert mode
+inoremap jk <Esc>
+inoremap jj <Esc>
+
+set langmap+=чявертъуиопшщасдфгхйклзьцжбнмЧЯВЕРТЪУИОПШЩАСДФГХЙКЛЗѝЦЖБНМ;`qwertyuiop[]asdfghjklzxcvbnm~QWERTYUIOP{}ASDFGHJKLZXCVBNM,ю\\,Ю\|,
+" }}}
+
+" Status line ------------------------------------------------------------- {{{
+set laststatus=2
+set statusline=%f         " Path to the file
+set statusline+=%=        " Switch to the right side
+set statusline+=%l        " Current line
+set statusline+=/         " Separator
+set statusline+=%L        " Total lines
+" }}}
+
+" Others ------------------------------------------------------------------ {{{
+" Remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+" }}}
+
+" Vimscript file settings ------------------------------------------------- {{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}

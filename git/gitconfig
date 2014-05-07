@@ -1,0 +1,21 @@
+[user]
+	email = emanuela.mollova@gmail.com
+	name = EmanuelaMollova
+
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	pl = log --oneline --abbrev-commit --all --graph --decorate --color
+	p = push origin master
+
+[color]
+	ui = true
+
+[core]
+	editor = vim
+
+[help]
+	autocorrect = 5

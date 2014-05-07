@@ -1,0 +1,24 @@
+alias cc="clear"
+alias apt-get="sudo apt-get"
+alias v="vim"
+alias r="noglob rake"
+alias rake="noglob rake"
+
+# Git
+alias g="git"
+alias gp="git push"
+alias ggg="git status"
+alias gt="git status"
+alias gs="git stash"
+alias gsp="git stash pop"
+alias gsa="git stash apply"
+alias gsc="git stash clear"
+alias gca="git commit --amend"
+alias gd="git diff"
+alias gdc="git diff --cached"
+
+# Configure
+alias confzsh="vim $HOME/dotFiles/zsh/zshrc"
+alias confvim="vim $HOME/dotFiles/vim/vimrc"
+alias confbash="vim $HOME/dotFiles/bash/bashrc"
+alias confaliases="vim $HOME/dotFiles/bash/aliases"

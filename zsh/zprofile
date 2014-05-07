@@ -1,0 +1,4 @@
+. ~/.oh-my-zsh/plugins/rand-quote/rand-quote.plugin.zsh
+
+print `quote`
+print
