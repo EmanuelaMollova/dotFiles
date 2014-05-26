@@ -1,0 +1,49 @@
+#!/bin/bash
+. print_helpers
+
+PROGRAMS=(                                 \
+    'git'   'sudo apt-get install git'     \
+    'vim'   'sudo apt-get install vim'     \
+    'gvim'  'sudo apt-get install vim-gtk' \
+    'tmux'  'sudo apt-get install tmux'    \
+    'guake' 'sudo apt-get install guake'   \
+)
+
+apt_update () {
+    echo "Do you want to update apt? [y/n]"; read answer
+
+    if [ "$answer" = 'y' ]; then
+        sudo apt-get update
+    fi
+}
+
+check_if_installed () {
+    command="command -v $1"
+    if [ -n "`$command`" ]; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+install_program () {
+    if check_if_installed $1; then
+        emphasise "$1 is installing"; $2; break_line
+
+        if check_if_installed $1; then
+            emphasise_error "$1 failed to install"
+        else
+            emphasise_success "$1 is successfully installed"
+        fi
+    else
+        emphasise "$1 is already installed"
+    fi
+}
+
+apt_update
+
+break_line
+
+for (( i=0; i<${#PROGRAMS[*]};  i=i+2 )); do
+    install_program "${PROGRAMS[$i]}" "${PROGRAMS[$i+1]}"
+done

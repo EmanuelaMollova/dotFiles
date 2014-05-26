@@ -33,6 +33,9 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -137,6 +140,8 @@ nmap <silent> <F2> :NERDTreeToggle<CR>
 
 " Map F3 to toggle Tagbar
 nmap <silent> <F3> :TagbarToggle<CR>
+
+let g:user_emmet_expandabbr_key = '<c-q>'
 
 nmap :W :w<CR>
 nmap :в :w<CR>

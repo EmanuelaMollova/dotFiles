@@ -1,60 +1,43 @@
-#TODO check if  symlinks already exist...
-
-require 'fileutils'
-include FileUtils
-
-desc "Configure bash"
 task :configure_bash do
-  puts 'Configuring bash'
-
-  system 'ln -s ~/dotFiles/bash $HOME/.bash'
-  system 'ln -s ~/dotFiles/bash/bashrc $HOME/.bashrc'
+  create_symlink('.bashrc', 'bash/bashrc')
+  create_symlink('.bash', 'bash')
 end
 
-desc "Install zsh and oh-my-zsh"
-task :install_zsh do
-  puts 'Installing zsh'
-
-  #TODO solarized + modified powerline font
-end
-
-desc "Configure zsh"
 task :configure_zsh do
-  puts 'Configuring zsh'
-
   system 'cp ~/dotFiles/zsh/oh-my-zsh/themes/agnoster_.zsh-theme $HOME/.oh-my-zsh/themes/agnoster_.zsh-theme'
-  system 'ln -s ~/dotFiles/zsh/zshrc $HOME/.zshrc'
-  system 'ln -s ~/dotFiles/zsh/zprofile $HOME/.zprofile'
+  create_symlink('.zshrc', 'zsh/zshrc')
+  create_symlink('.zshprofile', 'zsh/zshprofile')
 end
 
-desc "Install Vim and gVim"
-task :install_vim do
-  puts 'Installing Vim'
-  system 'sudo apt-get install vim'
-
-  puts 'Installing gVim'
-  system 'sudo apt-get install vim-gtk'
-  #TODO ctags
-end
-
-desc "Configure Vim"
 task :configure_vim do
-  puts 'Configuring Vim'
-
   system 'git clone https://github.com/gmarik/Vundle.vim.git ~/dotFiles/vim/bundle/Vundle.vim'
-  system 'ln -s ~/dotFiles/vim $HOME/.vim'
-  system 'ln -s ~/dotFiles/vim/vimrc $HOME/.vimrc'
+  create_symlink('.vim', 'vim')
+  create_symlink('.vimrc', 'vim/vimrc')
   system 'vim +PluginInstall +qall'
 end
 
-desc "Install Git"
-task :install_git do
-  puts "Installing git"
-  system 'sudo apt-get install git'
+task :configure_git do
+  create_symlink('.gitconfig', 'git/gitconfig')
 end
 
-desc "Configure Git"
-task :configure_git do
-  puts 'Configuring Git'
-  system 'ln -s ~/dotFiles/git/gitconfig $HOME/.gitconfig'
+task :configure_tmux do
+  create_symlink('.tmux.conf', 'tmux/tmux.conf')
+end
+
+task :configure_xmodmap do
+  create_symlink('.xmodmap', 'xmodmap')
+  system 'xmodmap $HOME/.xmodmap'
+end
+
+def create_symlink(path, dotfile)
+  path, dotfile = homify(path), homify('dotFiles/' + dotfile)
+  if File.exists?(path)
+    p "#{path} already exists, do you want to replace it?"
+    $stdin.gets.chomp == 'y' ? File.delete(path) : return
+  end
+  system "ln -s #{dotfile} #{path}"
+end
+
+def homify(path)
+  Dir.home + '/' + path
 end

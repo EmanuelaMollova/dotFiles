@@ -1,0 +1,28 @@
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+RESET='\33[0m'
+# BLUE='\033[0;34m'
+# GRAYBG='\033[0;100m'
+
+break_line () {
+    printf "\n"
+}
+
+line () {
+    echo '-------------------------------------'
+}
+
+emphasise () {
+    line
+    printf "$1\n"
+    line
+    break_line
+}
+
+emphasise_success() {
+    emphasise "${GREEN}$1${RESET}"
+}
+
+emphasise_error () {
+    emphasise "${RED}$1${RESET}"
+}
