@@ -29,6 +29,10 @@ task :configure_xmodmap do
   system 'xmodmap $HOME/.xmodmap'
 end
 
+task :configure_jshint do
+  create_symlink('.jshintrc', 'jshintrc')
+end
+
 def create_symlink(path, dotfile)
   path, dotfile = homify(path), homify('dotFiles/' + dotfile)
   if File.exists?(path)

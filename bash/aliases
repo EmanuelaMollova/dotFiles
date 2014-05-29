@@ -3,6 +3,7 @@ alias apt-get="sudo apt-get"
 alias v="vim"
 alias r="noglob rake"
 alias rake="noglob rake"
+alias nu=nodeunit
 
 alias apachestart="sudo /etc/init.d/apache2 start"
 alias apacherestart="sudo /etc/init.d/apache2 restart"
