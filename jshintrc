@@ -1,3 +1,33 @@
 {
-    "node" : true
+  /*
+   * ENVIRONMENTS
+   * =================
+   */
+
+  // Define globals exposed by Node.js.
+  "node": true,
+
+  /*
+   * ENFORCING OPTIONS
+   * =================
+   */
+
+  // Force all variable names to use either camelCase style or UPPER_CASE
+  // with underscores.
+  "camelcase": true,
+
+  // Prohibit use of == and != in favor of === and !==.
+  "eqeqeq": true,
+
+  // Enforce tab width of 2 spaces.
+  "indent": 2,
+
+  // Prohibit trailing whitespace.
+  "trailing": true,
+
+  // Enforce line length to 80 characters
+  "maxlen": 80,
+
+  // Enforce placing 'use strict' at the top function scope
+  "strict": true
 }
